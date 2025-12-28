@@ -4,6 +4,7 @@ After=network-online.target
 
 [Container]
 Image=docker.io/jevolk/tuwunel:main-release-all-aarch64-v8-linux-gnu
+AutoUpdate=registry
 ContainerName=tuwunel
 Network=web.network
 Environment=TUWUNEL_SERVER_NAME=dariush.dev

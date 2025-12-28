@@ -4,6 +4,7 @@ After=network-online.target
 
 [Container]
 Image=ghcr.io/pocket-id/pocket-id:v1
+AutoUpdate=registry
 ContainerName=pocketid
 Network=web.network
 EnvironmentFile=/mnt/data/infra/.env
