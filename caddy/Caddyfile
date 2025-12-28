@@ -1,0 +1,15 @@
+{
+    email dkomeili@proton.me
+}
+
+auth.dariush.dev {
+    reverse_proxy pocketid:1411
+}
+
+status.dariush.dev {
+    reverse_proxy kuma:3001
+}
+
+matrix.dariush.dev {
+    reverse_proxy tuwunel:8008
+}

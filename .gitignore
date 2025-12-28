@@ -1,0 +1,20 @@
+# 1. Global Ignores
+.DS_Store
+.env
+
+# 2. Ignore all data content...
+pocketid/*
+kuma/*
+tuwunel/*
+caddy/data/*
+caddy/config/*
+
+# 3. ...But keep the empty marker files (so the folders exist)
+!pocketid/.gitkeep
+!kuma/.gitkeep
+!tuwunel/.gitkeep
+!caddy/data/.gitkeep
+!caddy/config/.gitkeep
+
+# 4. Explicitly keep configuration files you WANT tracked
+!caddy/Caddyfile
