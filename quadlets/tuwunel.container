@@ -1,0 +1,22 @@
+[Unit]
+Description=Tuwunel Matrix Server
+After=network-online.target
+
+[Container]
+Image=docker.io/jevolk/tuwunel:main-release-all-aarch64-v8-linux-gnu
+ContainerName=tuwunel
+Network=web.network
+Environment=TUWUNEL_SERVER_NAME=dariush.dev
+Environment=TUWUNEL_DATABASE_PATH=/var/lib/tuwunel
+Environment=TUWUNEL_DATABASE_BACKEND=sqlite
+Environment=TUWUNEL_PORT=8008
+Environment=TUWUNEL_ADDRESS=0.0.0.0
+Environment=TUWUNEL_MAX_REQUEST_SIZE=20000000
+Environment=TUWUNEL_ALLOW_REGISTRATION=false
+Volume=/mnt/data/infra/tuwunel:/var/lib/tuwunel:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

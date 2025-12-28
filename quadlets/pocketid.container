@@ -1,0 +1,17 @@
+[Unit]
+Description=PocketID OIDC Provider
+After=network-online.target
+
+[Container]
+Image=ghcr.io/pocket-id/pocket-id:v1
+ContainerName=pocketid
+Network=web.network
+EnvironmentFile=/mnt/data/infra/.env
+Environment=APP_URL=https://auth.dariush.dev
+Volume=/mnt/data/infra/pocketid:/app/data:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,5 @@
+[Unit]
+Description=Infra Bridge Network
+[Network]
+Driver=bridge
+IPv6=true
