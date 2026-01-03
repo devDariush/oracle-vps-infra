@@ -3,7 +3,7 @@ Description=PocketID OIDC Provider
 After=network-online.target
 
 [Container]
-Image=ghcr.io/pocket-id/pocket-id:v1
+Image=ghcr.io/pocket-id/pocket-id:v2
 Label=io.containers.autoupdate=registry
 ContainerName=pocketid
 Network=web.network
