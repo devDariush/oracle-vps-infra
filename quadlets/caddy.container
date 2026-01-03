@@ -4,7 +4,7 @@ After=network-online.target
 
 [Container]
 Image=docker.io/library/caddy:2-alpine
-AutoUpdate=registry
+Label=io.containers.autoupdate=registry
 ContainerName=caddy
 Network=web.network
 PublishPort=80:80
