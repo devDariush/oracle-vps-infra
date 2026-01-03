@@ -135,59 +135,6 @@ sudo loginctl enable-linger $USER
     systemctl --user enable caddy pocketid kuma tuwunel
     ```
 
-### 4.3 Service Definitions (Reference)
-
-#### `quadlets/caddy.container`
-
-```ini
-[Unit]
-Description=Caddy Reverse Proxy
-After=network-online.target
-
-[Container]
-Image=docker.io/library/caddy:alpine
-ContainerName=caddy
-Network=web.network
-PublishPort=80:80
-PublishPort=443:443
-Volume=/mnt/data/infra/caddy/Caddyfile:/etc/caddy/Caddyfile:Z
-Volume=/mnt/data/infra/caddy/data:/data:Z
-Volume=/mnt/data/infra/caddy/config:/config:Z
-
-[Service]
-Restart=always
-
-[Install]
-WantedBy=default.target
-```
-
-#### `quadlets/tuwunel.container`
-
-```ini
-[Unit]
-Description=Tuwunel Matrix Server
-After=network-online.target
-
-[Container]
-Image=docker.io/jevolk/tuwunel:main-release-all-aarch64-v8-linux-gnu
-ContainerName=tuwunel
-Network=web.network
-Environment=TUWUNEL_SERVER_NAME=dariush.dev
-Environment=TUWUNEL_DATABASE_PATH=/var/lib/tuwunel
-Environment=TUWUNEL_DATABASE_BACKEND=sqlite
-Environment=TUWUNEL_PORT=8008
-Environment=TUWUNEL_ADDRESS=0.0.0.0
-Environment=TUWUNEL_MAX_REQUEST_SIZE=20000000
-Environment=TUWUNEL_ALLOW_REGISTRATION=false
-Volume=/mnt/data/infra/tuwunel:/var/lib/tuwunel:Z
-
-[Service]
-Restart=always
-
-[Install]
-WantedBy=default.target
-```
-
 ---
 
 ## 5. Federation
@@ -198,7 +145,7 @@ Ensure the following are served from the apex (`dariush.dev`):
 - `/.well-known/matrix/server`:  
   `{"m.server": "matrix.dariush.dev:443"}`
 - `/.well-known/matrix/client`:  
-  `{"m.homeserver": {"base_url": "https://matrix.dariush.dev"}}`
+  `{ "m.homeserver": { "base_url": "https://matrix.dariush.dev" }, "org.matrix.msc3575.proxy": { "url": "https://matrix.dariush.dev" } }`
 
 ---
 
@@ -231,9 +178,4 @@ podman logs -f tuwunel
 
 ### Auto-Update Images
 
-Podman Auto-Update is not configured yet. To update manually:
-
-```bash
-podman pull docker.io/jevolk/tuwunel:main-release-all-aarch64-v8-linux-gnu
-systemctl --user restart tuwunel
-```
+Refer to [this article](https://major.io/p/podman-quadlet-automatic-updates/).
