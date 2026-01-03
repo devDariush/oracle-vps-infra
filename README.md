@@ -132,7 +132,8 @@ sudo loginctl enable-linger $USER
 
 4. **Enable Auto-Start:**
     ```bash
-    systemctl --user enable caddy pocketid kuma tuwunel
+    chmod +x enable.sh
+    ./enable.sh
     ```
 
 ---
