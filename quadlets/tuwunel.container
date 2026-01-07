@@ -15,11 +15,12 @@ Environment=TUWUNEL_PORT=8008
 Environment=TUWUNEL_ADDRESS=0.0.0.0
 Environment=TUWUNEL_MAX_REQUEST_SIZE=20000000
 Environment=TUWUNEL_ALLOW_REGISTRATION=false
-Environment=TUWUNEL_DATABASE_BACKUP_PATH=/opt/tuwunel-db-backups
+Environment=TUWUNEL_DATABASE_BACKUP_PATH=/tmp/tuwunel-db-backups
+Environment=TUWUNEL_NEW_USER_DISPLAYNAME_SUFFIX=
 
 Volume=/mnt/data/infra/tuwunel:/var/lib/tuwunel:Z
 Volume=/mnt/data/infra/tuwunel/config.toml:/config.toml:Z,ro
-Volume=/mnt/data/backup-dumps/tuwunel-nomedia:/opt/tuwunel-db-backups:Z
+Volume=/home/opc/tmp/tuwunel-db-backups:/tmp/tuwunel-db-backups:Z
 
 [Service]
 Restart=always

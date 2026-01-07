@@ -1,6 +1,7 @@
 # 1. Global Ignores
 .DS_Store
 .env
+backup-scripts/tuwunel/tuwunel-db-backup.env
 
 # 2. Ignore all data content...
 pocketid/*

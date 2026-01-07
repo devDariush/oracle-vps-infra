@@ -11,5 +11,6 @@ status.dariush.dev {
 }
 
 matrix.dariush.dev {
+    uri replace /_matrix/client/r0/login/sso/redirect /_matrix/client/v3/login/sso/redirect
     reverse_proxy tuwunel:8008
 }
