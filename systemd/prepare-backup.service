@@ -1,0 +1,11 @@
+[Unit]
+Description=Prepare files for backup
+# If this fails, the backup container will NOT start
+OnFailure=notify-failure.service 
+
+[Service]
+Type=oneshot
+# Ensure the script is executable (chmod +x)
+ExecStart=/mnt/data/infra/prepare-backup.sh
+# Optional: Clean up the folder after backup (requires sophisticated chaining)
+# For now, we assume the script just prepares the folder.
