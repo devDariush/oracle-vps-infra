@@ -9,6 +9,7 @@ kuma/*
 tuwunel/*
 caddy/data/*
 caddy/config/*
+gotosocial/*
 
 # 3. ...But keep the empty marker files (so the folders exist)
 !pocketid/.gitkeep

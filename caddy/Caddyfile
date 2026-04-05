@@ -14,3 +14,15 @@ matrix.dariush.dev {
     uri replace /_matrix/client/r0/login/sso/redirect /_matrix/client/v3/login/sso/redirect
     reverse_proxy tuwunel:8008
 }
+
+social.dariush.dev {
+    @health path /readyz /livez
+    respond @health 404
+    reverse_proxy gotosocial:8080 {
+        flush_interval -1
+        header_up Host {host}
+        header_up X-Forwarded-Proto {scheme}
+        # Use remote_host to send ONLY the IP, not the port
+        header_up X-Real-IP {remote_host}
+    }
+}

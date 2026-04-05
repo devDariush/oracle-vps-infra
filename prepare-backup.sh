@@ -14,4 +14,8 @@ bash $BACKUP_SCRIPTS_DIR/tuwunel/tuwunel-cp-media.sh
 echo "---pocketid---"
 bash $BACKUP_SCRIPTS_DIR/pocketid/pocketid-backup.sh
 
+# GoToSocial
+echo "---gotosocial---"
+bash $BACKUP_SCRIPTS_DIR/gotosocial/gotosocial-backup.sh
+
 echo "Full backup successful! ^^'"

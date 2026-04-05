@@ -5,6 +5,8 @@ systemctl --user enable caddy
 systemctl --user enable kuma
 systemctl --user enable pocketid
 systemctl --user enable tuwunel
+systemctl --user enable postgres
+systemctl --user enable gotosocial
 systemctl --user enable restic-backup.timer
 systemctl --user enable restic-backup
 

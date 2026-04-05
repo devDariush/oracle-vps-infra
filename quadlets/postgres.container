@@ -1,0 +1,24 @@
+[Unit]
+Description=PostgreSQL Database
+After=network-online.target
+
+[Container]
+Image=docker.io/library/postgres:15-alpine
+Label=io.containers.autoupdate=registry
+ContainerName=postgres
+Network=web.network
+
+EnvironmentFile=/mnt/data/infra/.env
+
+Environment=POSTGRES_DB=gotosocial
+Environment=POSTGRES_USER=gotosocial
+
+Environment=TZ=Europe/Berlin
+
+Volume=/mnt/data/infra/postgres/data:/var/lib/postgresql/data:Z
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

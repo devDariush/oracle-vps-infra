@@ -3,7 +3,7 @@ set -e
 
 echo "attempting to trigger database backup internally..."
 
-DEST="/mnt/data/backup-dumps/tuwunel-db"
+DEST="/mnt/data/backup-dump/tuwunel-db"
 
 mkdir -p "$DEST"
 

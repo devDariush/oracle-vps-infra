@@ -1,0 +1,39 @@
+[Unit]
+Description=GoToSocial ActivityPub
+After=network-online.target postgres.service
+
+[Container]
+Image=docker.io/superseriousbusiness/gotosocial:latest
+Label=io.containers.autoupdate=registry
+ContainerName=gotosocial
+Network=web.network
+User=1000:1000
+UserNS=keep-id
+
+Volume=/mnt/data/infra/gotosocial/storage:/gotosocial/storage:Z
+
+EnvironmentFile=/mnt/data/infra/.env
+
+Environment=GTS_HOST=social.dariush.dev
+Environment=GTS_ACCOUNT_DOMAIN=dariush.dev
+Environment=GTS_LETSENCRYPT_ENABLED=false
+Environment=GTS_TRUSTED_PROXIES=127.0.0.1/32,::1,10.0.0.0/8,fd00::/8
+
+Environment=GTS_DB_TYPE=postgres
+Environment=GTS_DB_ADDRESS=postgres
+Environment=GTS_DB_PORT=5432
+Environment=GTS_DB_DATABASE=gotosocial
+Environment=GTS_DB_USER=gotosocial
+
+Environment=GTS_OIDC_ENABLED=true
+Environment=GTS_OIDC_IDP_NAME=Pocket ID
+Environment=GTS_OIDC_ISSUER=https://auth.dariush.dev
+Environment=GTS_OIDC_LINK_EXISTING=true
+
+Environment=TZ=Europe/Berlin
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
