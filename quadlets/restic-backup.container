@@ -7,7 +7,7 @@ After=prepare-backup.service
 [Container]
 Image=docker.io/restic/restic
 # Mount the folder created by your script
-Volume=/mnt/data/backup-dump:/data:ro,Z
+Volume=/mnt/data/backup-dump:/data:Z
 # Map the secrets
 Secret=r2_access_key,type=env,target=AWS_ACCESS_KEY_ID
 Secret=r2_secret_key,type=env,target=AWS_SECRET_ACCESS_KEY
@@ -19,7 +19,7 @@ Environment=RESTIC_HOST=oracle-linux-user
 
 # Commands: Backup, then clean up old snapshots
 Entrypoint=/bin/sh
-Exec=-c "restic backup /data --host oracle-linux-user && restic forget --keep-daily 30 --prune"
+Exec=-c "restic backup /data --host oracle-linux-user && restic forget --keep-daily 30 --prune && find /data -mindepth 1 -delete"
 
 [Service]
 Restart=on-failure
