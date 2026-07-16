@@ -8,7 +8,6 @@ Label=io.containers.autoupdate=registry
 ContainerName=tuwunel
 Network=web.network
 
-Environment=TUWUNEL_CONFIG=/config.toml
 Environment=TUWUNEL_SERVER_NAME=dariush.dev
 Environment=TUWUNEL_DATABASE_PATH=/var/lib/tuwunel
 Environment=TUWUNEL_PORT=8008
@@ -18,8 +17,14 @@ Environment=TUWUNEL_ALLOW_REGISTRATION=false
 Environment=TUWUNEL_DATABASE_BACKUP_PATH=/tmp/tuwunel-db-backups
 Environment=TUWUNEL_NEW_USER_DISPLAYNAME_SUFFIX=
 
+Environment=TUWUNEL_IDENTITY_PROVIDER__0__NAME=PocketID
+Environment=TUWUNEL_IDENTITY_PROVIDER__0__BRAND=pocketid
+
+Environment=TUWUNEL_WELL_KNOWN__CLIENT=https://matrix.dariush.dev
+Environment=TUWUNEL_WELL_KNOWN__SERVER=matrix.dariush.dev:443
+EnvironmentFile=/mnt/data/infra/.env
+
 Volume=/mnt/data/infra/tuwunel:/var/lib/tuwunel:Z
-Volume=/mnt/data/infra/tuwunel/config.toml:/config.toml:Z,ro
 Volume=/home/opc/tmp/tuwunel-db-backups:/tmp/tuwunel-db-backups:Z
 
 [Service]
